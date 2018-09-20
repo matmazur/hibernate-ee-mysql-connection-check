@@ -1,6 +1,5 @@
 package model;
 
-import com.sun.istack.internal.NotNull;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -11,20 +10,17 @@ public class Student {
 
 
     @Id
-    @GeneratedValue
-    @Column("id")
+    @GeneratedValue(generator = "incrementor")
+    @Column(name = "id")
     private String id;
 
-    @Column("first_name")
-    @NotNull
+    @Column(name = "first_name")
     private String first_name;
 
-    @Column("last_name")
-    @NotNull
+    @Column(name = "last_name")
     private String last_name;
 
-    @Column("email")
-    @NotNull
+    @Column(name = "email")
     private String email;
 
     public Student(String first_name, String last_name, String email) {

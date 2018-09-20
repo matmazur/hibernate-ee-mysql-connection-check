@@ -1,3 +1,6 @@
+import dao.StudentDAO;
+import model.Student;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import javax.security.auth.login.Configuration;
@@ -25,11 +28,11 @@ public class TestJdbc {
 
 
 
+        Student stud = new Student();
 
-
-
-
-
+        stud.setFirst_name("Rick");
+        stud.setLast_name("Martin");
+        stud.setEmail("Ricky@gmail.com");
 
 
 
