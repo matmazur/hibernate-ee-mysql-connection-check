@@ -4,15 +4,15 @@ import model.Student;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 
 public class StudentDAO {
 
-    private EntityManager entityManager;
+    protected EntityManager entityManager;
 
     public StudentDAO() {
 
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("testUnit");
-        entityManager = factory.createEntityManager();
+//        entityManager = PersistenceManager
     }
 
     public void save(Student student) {
@@ -20,7 +20,8 @@ public class StudentDAO {
     }
 
     public Student get(Long id) {
-        return entityManager.find(Student.class, id);
+
+    return entityManager.find(Student.class, id);
     }
 
     public void cleanUp() {

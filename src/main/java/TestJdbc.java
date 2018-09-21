@@ -33,15 +33,17 @@ public class TestJdbc {
 
 
         Student stud = new Student();
-        stud.setFirst_name("Mike");
-        stud.setLast_name("Pompeo");
-        stud.setEmail("puta@gmail");
+        stud.setFirst_name("Richard");
+        stud.setLast_name("Baldwin");
+        stud.setEmail("broking@gmail");
+//
+//
+//        session.beginTransaction();
+//        session.save(stud);
+//        session.getTransaction().commit();
 
-
-        session.beginTransaction();
-        session.save(stud);
-        session.getTransaction().commit();
-
+        StudentDAO dao  = new StudentDAO();
+        dao.save(stud);
 
     }
 
