@@ -2,43 +2,48 @@ import dao.StudentDAO;
 import model.Student;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 
-import javax.security.auth.login.Configuration;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class TestJdbc {
 
+
     public static void main(String[] args) {
 
-
-        String jdbcUrl  = "jdbc:mysql://localhost:6603/test?useSSL=false";
+        String jdbcUrl = "jdbc:mysql://localhost:3306/test?useSSL=false";
         String user = "root";
         String password = "pass";
 
         System.out.println("Connecting to the DB + " + jdbcUrl);
 
         try {
-            Connection myConn = DriverManager.getConnection(jdbcUrl,user,password);
+            Connection myConn = DriverManager.getConnection(jdbcUrl, user, password);
             System.out.println("Connection successful");
         } catch (SQLException e) {
             e.printStackTrace();
         }
+// THIS ABOVE WORKS CORRECLTY  -  CONNECTION TO THE DB IS PROPER
 
+        SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Student.class).buildSessionFactory();
+
+        Session session = factory.getCurrentSession();
 
 
         Student stud = new Student();
-
-        stud.setFirst_name("Rick");
-        stud.setLast_name("Martin");
-        stud.setEmail("Ricky@gmail.com");
-
+        stud.setFirst_name("Mike");
+        stud.setLast_name("Pompeo");
+        stud.setEmail("puta@gmail");
 
 
-
-
+        session.beginTransaction();
+        session.save(stud);
+        session.getTransaction().commit();
 
 
     }
+
+
 }

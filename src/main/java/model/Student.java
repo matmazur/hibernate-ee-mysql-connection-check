@@ -1,6 +1,5 @@
 package model;
 
-
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -10,17 +9,17 @@ public class Student {
 
 
     @Id
-    @GeneratedValue(generator = "incrementor")
-    @Column(name = "id")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id",unique = true)
+    private Long id;
 
-    @Column(name = "first_name")
+    @Column(name = "first_name", nullable = false)
     private String first_name;
 
-    @Column(name = "last_name")
+    @Column(name = "last_name", nullable = false)
     private String last_name;
 
-    @Column(name = "email")
+    @Column(name = "email", nullable = false)
     private String email;
 
     public Student(String first_name, String last_name, String email) {
@@ -31,7 +30,6 @@ public class Student {
 
     public Student() {
     }
-
 
     public String getFirst_name() {
         return first_name;

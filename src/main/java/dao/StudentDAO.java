@@ -1,21 +1,18 @@
 package dao;
 
 import model.Student;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class StudentDAO {
 
-
-    private EntityManagerFactory emFactory;
     private EntityManager entityManager;
 
-
     public StudentDAO() {
-        emFactory = Persistence.createEntityManagerFactory("testUnit");
-        entityManager = emFactory.createEntityManager();
+
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("testUnit");
+        entityManager = factory.createEntityManager();
     }
 
     public void save(Student student) {
@@ -23,14 +20,11 @@ public class StudentDAO {
     }
 
     public Student get(Long id) {
-        Student student = entityManager.find(Student.class, id);
-        return student;
+        return entityManager.find(Student.class, id);
     }
 
     public void cleanUp() {
         entityManager.close();
-        emFactory.close();
     }
-
 
 }
