@@ -29,20 +29,10 @@ public class TestJdbc {
         }
 // THIS ABOVE WORKS CORRECLTY  -  CONNECTION TO THE DB IS PROPER
 
-        SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Student.class).buildSessionFactory();
-
-        Session session = factory.getCurrentSession();
-
-
-        Student stud = new Student();
-        stud.setFirst_name("Richard");
-        stud.setLast_name("Baldwin");
-        stud.setEmail("broking@gmail");
-//
-//
-//        session.beginTransaction();
-//        session.save(stud);
-//        session.getTransaction().commit();
+              Student stud = new Student();
+        stud.setFirst_name("Rick");
+        stud.setLast_name("Sanchez");
+        stud.setEmail("wubbalubba@gmail");
 
         EntityManager en = PersistenceManager.INSTANCE.getEntityManager();
 //        StudentDAO dao  = new StudentDAO();
