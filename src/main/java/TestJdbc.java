@@ -4,6 +4,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceUnit;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -42,9 +44,14 @@ public class TestJdbc {
 //        session.save(stud);
 //        session.getTransaction().commit();
 
-        StudentDAO dao  = new StudentDAO();
-        dao.save(stud);
-
+        EntityManager en = PersistenceManager.INSTANCE.getEntityManager();
+//        StudentDAO dao  = new StudentDAO();
+//        dao.save(stud);
+        en.getTransaction().begin();
+        en.persist(stud);
+        en.getTransaction().commit();
+        en.close();
+        PersistenceManager.INSTANCE.close();
     }
 
 
